@@ -1,0 +1,37 @@
+/* 3D Card Flip Animation Styling */
+.perspective-1200 {
+    perspective: 1200px;
+}
+.transform-style-3d {
+    transform-style: preserve-3d;
+}
+.backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
+
+/* Transparent Background */
+.bg-concert-hall {
+    background-color: #0b1120;
+    background-image: none;
+}
+
+/* Custom Scrollbar for Card & Modals */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(234, 179, 8, 0.35);
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(234, 179, 8, 0.65);
+}
