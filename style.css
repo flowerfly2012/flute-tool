@@ -13,10 +13,39 @@
     transform: rotateY(180deg);
 }
 
-/* Transparent Background */
+/* Warm paper background for the light library theme */
 .bg-concert-hall {
-    background-color: #0b1120;
-    background-image: none;
+    background-color: #f3ecdf;
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(222, 183, 132, 0.24), transparent 58%),
+        radial-gradient(ellipse at 85% 45%, rgba(194, 169, 130, 0.12), transparent 45%),
+        linear-gradient(145deg, #f7f1e7 0%, #eee5d7 55%, #f5eee3 100%);
+}
+
+.modal-backdrop {
+    background-color: rgba(47, 39, 31, 0.52);
+}
+
+.library-card {
+    background-color: #eee6d9;
+}
+
+.draw-button {
+    background-color: #66513d;
+    color: #f2e0cd;
+}
+
+.draw-button:hover {
+    background-color: #554330;
+}
+
+.dark-action-button {
+    background-color: #8f5148;
+    color: #f5e9df;
+}
+
+.dark-action-button:hover {
+    background-color: #7d423a;
 }
 
 /* Custom Scrollbar for Card & Modals */
@@ -25,13 +54,13 @@
     height: 6px;
 }
 ::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(209, 196, 175, 0.65);
     border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(234, 179, 8, 0.35);
+    background: rgba(153, 111, 73, 0.45);
     border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(234, 179, 8, 0.65);
+    background: rgba(153, 111, 73, 0.7);
 }

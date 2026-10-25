@@ -126,13 +126,13 @@ function renderKeyCheckboxes() {
         const box = document.createElement('label');
         box.className = `flex items-center gap-1.5 px-2 py-1.5 rounded-xl border text-xs cursor-pointer transition select-none ${
             isChecked 
-                ? 'bg-gold-500/15 border-gold-500/60 text-gold-200 font-bold shadow-md' 
+                ? 'bg-amber-800 border-amber-400 text-amber-100 font-bold shadow-md shadow-amber-500/10'
                 : 'bg-slate-800/60 border-slate-700/60 text-slate-400 hover:border-slate-600'
         }`;
         
         box.innerHTML = `
             <input type="checkbox" value="${group.group_id}" ${isChecked ? 'checked' : ''} class="hidden">
-            <i class="fa-solid ${isChecked ? 'fa-square-check text-gold-400' : 'fa-square text-slate-600'} text-sm"></i>
+            <i class="fa-solid ${isChecked ? 'fa-square-check text-amber-200' : 'fa-square text-slate-600'} text-sm"></i>
             <span class="truncate">${labelText}</span>
         `;
 
@@ -409,10 +409,9 @@ function updateUIProgress() {
         }
     });
 
-    const remainingInFilter = totalPossibleInFilter - totalPracticedInFilter;
-    const percentage = totalPossibleInFilter > 0 ? (remainingInFilter / totalPossibleInFilter) * 100 : 0;
+    const percentage = totalPossibleInFilter > 0 ? (totalPracticedInFilter / totalPossibleInFilter) * 100 : 0;
 
-    progressText.textContent = `剩餘 ${remainingInFilter} / ${totalPossibleInFilter} 張卡片未練`;
+    progressText.textContent = `已完成 ${totalPracticedInFilter} / ${totalPossibleInFilter} 張卡片`;
     progressBar.style.width = `${percentage}%`;
     historyBadge.textContent = practicedItemKeys.size;
 }
