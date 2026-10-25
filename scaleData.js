@@ -16,7 +16,7 @@ const scaleData = [
             "name": "a 小調",
             "german_name": "a-moll",
             "alterations": "升 Sol (G#)",
-            "range": "A3 > A5 (La > La)",
+            "range": "A4 > A6 (La > La)",
             "arpeggio": "La - Do - Mi (A - C - E)"
         }
     },
@@ -69,7 +69,7 @@ const scaleData = [
             "name": "降B 大調",
             "german_name": "B-Dur",
             "alterations": "降 Si (Bb)、降 Mi (Eb)",
-            "range": "Bb3 > Bb5 (降 Si > 降 Si)",
+            "range": "Bb4 > Bb6 (降 Si > 降 Si)",
             "arpeggio": "降 Si - Re - Fa (Bb - D - F)"
         },
         "minor_key": {
@@ -96,7 +96,7 @@ const scaleData = [
             "name": "b 小調 (h 小調)",
             "german_name": "h-moll",
             "alterations": "升 Fa、升 Do + 升 La (A#)",
-            "range": "B3 > B5 (Si > Si)",
+            "range": "B4 > B6 (Si > Si)",
             "arpeggio": "Si - Re - 升 Fa (B - D - F#)"
         }
     },
@@ -129,7 +129,7 @@ const scaleData = [
             "name": "A 大調",
             "german_name": "A-Dur",
             "alterations": "升 Fa、升 Do、升 Sol (G#)",
-            "range": "A3 > A5 (La > La)",
+            "range": "A4 > A6 (La > La)",
             "arpeggio": "La - 升 Do - Mi (A - C# - E)"
         },
         "minor_key": {
