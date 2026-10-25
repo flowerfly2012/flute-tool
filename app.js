@@ -33,9 +33,12 @@ const completionModal = document.getElementById('completion-modal');
 const completionBox = document.getElementById('completion-box');
 const restartGameBtn = document.getElementById('restart-game-btn');
 const cardKeySigBadge = document.getElementById('card-key-sig-badge');
+const themeToggle = document.getElementById('theme-toggle');
+const themeStorageKey = 'flute_scale_draw_theme';
 
 // Application Initialization
 function initApp() {
+    initializeTheme();
     loadFromLocalStorage();
     renderKeyCheckboxes();
     updateActivePool();
@@ -92,6 +95,8 @@ function initApp() {
         resetFilteredHistory();
     });
 
+    themeToggle.addEventListener('click', toggleTheme);
+
     // Card Click Interaction
     cardInner.addEventListener('click', (e) => {
         if (e.target.closest('button')) return; 
@@ -102,9 +107,42 @@ function initApp() {
             cardInner.classList.remove('rotate-y-180');
             isFlipped = false;
         }
+
     });
 
     updateCoverModeTag();
+}
+
+function initializeTheme() {
+    try {
+        const savedTheme = localStorage.getItem(themeStorageKey);
+        setTheme(savedTheme === 'dark' ? 'dark' : 'light');
+    } catch (e) {
+        console.warn('Theme preference load error:', e);
+        setTheme('light');
+    }
+}
+
+function toggleTheme() {
+    const nextTheme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+
+    try {
+        localStorage.setItem(themeStorageKey, nextTheme);
+    } catch (e) {
+        console.warn('Theme preference save error:', e);
+    }
+}
+
+function setTheme(theme) {
+    const isDark = theme === 'dark';
+    document.body.dataset.theme = theme;
+    themeToggle.setAttribute('aria-label', `切換至${isDark ? '淺色' : '深色'}模式`);
+    themeToggle.title = `切換至${isDark ? '淺色' : '深色'}模式`;
+    themeToggle.innerHTML = `
+        <i class="fa-solid fa-${isDark ? 'sun' : 'moon'}" aria-hidden="true"></i>
+        <span>${isDark ? '淺色模式' : '深色模式'}</span>
+    `;
 }
 
 // Render 15 Key Checkboxes Grid
@@ -126,13 +164,13 @@ function renderKeyCheckboxes() {
         const box = document.createElement('label');
         box.className = `flex items-center gap-1.5 px-2 py-1.5 rounded-xl border text-xs cursor-pointer transition select-none ${
             isChecked 
-                ? 'bg-gold-500/15 border-gold-500/60 text-gold-200 font-bold shadow-md' 
+                ? 'bg-amber-800 border-amber-400 text-amber-100 font-bold shadow-md shadow-amber-500/10'
                 : 'bg-slate-800/60 border-slate-700/60 text-slate-400 hover:border-slate-600'
         }`;
         
         box.innerHTML = `
             <input type="checkbox" value="${group.group_id}" ${isChecked ? 'checked' : ''} class="hidden">
-            <i class="fa-solid ${isChecked ? 'fa-square-check text-gold-400' : 'fa-square text-slate-600'} text-sm"></i>
+            <i class="fa-solid ${isChecked ? 'fa-square-check text-amber-200' : 'fa-square text-slate-600'} text-sm"></i>
             <span class="truncate">${labelText}</span>
         `;
 
@@ -270,12 +308,12 @@ function renderCardContent(item) {
         if (item.type === 'pair') {
             questionContent = `
                 <div class="flex flex-col gap-3 my-auto">
-                    <div class="bg-slate-800/90 border-2 border-gold-400/80 rounded-2xl p-4 sm:p-5 text-center shadow-lg">
+                    <div class="scale-card bg-slate-800/90 border-2 border-gold-400/80 rounded-2xl p-4 sm:p-5 text-center shadow-lg">
                         <span class="px-2.5 py-0.5 bg-gold-400/20 text-gold-300 font-bold text-xs rounded-md">大調 Major</span>
                         <h2 class="text-3xl sm:text-4xl font-black text-gold-300 font-serif mt-2">${g.major_key.name}</h2>
                         <p class="text-gold-200/80 text-sm font-semibold tracking-widest mt-1">(${g.major_key.german_name})</p>
                     </div>
-                    <div class="bg-slate-800/90 border-2 border-indigo-400/80 rounded-2xl p-4 sm:p-5 text-center shadow-lg">
+                    <div class="scale-card bg-slate-800/90 border-2 border-indigo-400/80 rounded-2xl p-4 sm:p-5 text-center shadow-lg">
                         <span class="px-2.5 py-0.5 bg-indigo-500/20 text-indigo-300 font-bold text-xs rounded-md">和聲小調 Harmonic Minor</span>
                         <h2 class="text-3xl sm:text-4xl font-black text-indigo-300 font-serif mt-2">${g.minor_key.name}</h2>
                         <p class="text-indigo-200/80 text-sm font-semibold tracking-widest mt-1">(${g.minor_key.german_name})</p>
@@ -284,7 +322,7 @@ function renderCardContent(item) {
             `;
         } else if (item.type === 'major') {
             questionContent = `
-                <div class="bg-slate-800/90 border-2 border-gold-400/80 rounded-2xl p-6 text-center shadow-lg my-auto">
+                <div class="scale-card bg-slate-800/90 border-2 border-gold-400/80 rounded-2xl p-6 text-center shadow-lg my-auto">
                     <span class="px-3 py-1 bg-gold-400/20 text-gold-300 font-bold text-xs sm:text-sm rounded-md">大調 Major</span>
                     <h2 class="text-4xl sm:text-5xl font-black text-gold-300 font-serif mt-3">${g.major_key.name}</h2>
                     <p class="text-gold-200/80 text-base font-semibold tracking-widest mt-1">(${g.major_key.german_name})</p>
@@ -292,7 +330,7 @@ function renderCardContent(item) {
             `;
         } else if (item.type === 'minor') {
             questionContent = `
-                <div class="bg-slate-800/90 border-2 border-indigo-400/80 rounded-2xl p-6 text-center shadow-lg my-auto">
+                <div class="scale-card bg-slate-800/90 border-2 border-indigo-400/80 rounded-2xl p-6 text-center shadow-lg my-auto">
                     <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 font-bold text-xs sm:text-sm rounded-md">和聲小調 Harmonic Minor</span>
                     <h2 class="text-4xl sm:text-5xl font-black text-indigo-300 font-serif mt-3">${g.minor_key.name}</h2>
                     <p class="text-indigo-200/80 text-base font-semibold tracking-widest mt-1">(${g.minor_key.german_name})</p>
@@ -307,7 +345,7 @@ function renderCardContent(item) {
         toggleAnswerBtn.innerHTML = `<i class="fa-solid fa-eye-slash"></i> 隱藏答案`;
 
         const majorHTML = `
-            <div class="bg-slate-800/90 border-l-4 border-gold-400 rounded-2xl p-3.5 sm:p-4 shadow-lg flex flex-col justify-between">
+            <div class="scale-card bg-slate-800/90 border-l-4 border-gold-400 rounded-2xl p-3.5 sm:p-4 shadow-lg flex flex-col justify-between">
                 <div class="flex items-center justify-between border-b border-slate-700/60 pb-1.5 mb-2">
                     <span class="px-2 py-0.5 bg-gold-400/20 text-gold-300 font-extrabold text-xs rounded-md">
                         大調 Major Scale
@@ -326,7 +364,7 @@ function renderCardContent(item) {
         `;
 
         const minorHTML = `
-            <div class="bg-slate-800/90 border-l-4 border-indigo-400 rounded-2xl p-3.5 sm:p-4 shadow-lg flex flex-col justify-between">
+            <div class="scale-card bg-slate-800/90 border-l-4 border-indigo-400 rounded-2xl p-3.5 sm:p-4 shadow-lg flex flex-col justify-between">
                 <div class="flex items-center justify-between border-b border-slate-700/60 pb-1.5 mb-2">
                     <span class="px-2 py-0.5 bg-indigo-500/20 text-indigo-300 font-extrabold text-xs rounded-md">
                         和聲小調 Harmonic Minor
@@ -409,10 +447,9 @@ function updateUIProgress() {
         }
     });
 
-    const remainingInFilter = totalPossibleInFilter - totalPracticedInFilter;
-    const percentage = totalPossibleInFilter > 0 ? (remainingInFilter / totalPossibleInFilter) * 100 : 0;
+    const percentage = totalPossibleInFilter > 0 ? (totalPracticedInFilter / totalPossibleInFilter) * 100 : 0;
 
-    progressText.textContent = `剩餘 ${remainingInFilter} / ${totalPossibleInFilter} 張卡片未練`;
+    progressText.textContent = `已完成 ${totalPracticedInFilter} / ${totalPossibleInFilter} 張卡片`;
     progressBar.style.width = `${percentage}%`;
     historyBadge.textContent = practicedItemKeys.size;
 }
