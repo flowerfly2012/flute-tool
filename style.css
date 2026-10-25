@@ -30,6 +30,20 @@
     background-color: #eee6d9;
 }
 
+.card-stage {
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(47, 39, 31, 0.25);
+}
+
+.card-stage .shadow,
+.card-stage [class*="shadow-"] {
+    box-shadow: none !important;
+}
+
+.card-stage .scale-card {
+    box-shadow: 0 10px 15px -3px rgba(47, 39, 31, 0.16), 0 4px 6px -4px rgba(47, 39, 31, 0.16) !important;
+}
+
 .draw-button {
     background-color: #66513d;
     color: #f2e0cd;
@@ -46,6 +60,198 @@
 
 .dark-action-button:hover {
     background-color: #7d423a;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border-color: #d1c4af;
+    background-color: #f6efe4;
+    color: #765638;
+}
+
+.theme-toggle:hover {
+    background-color: #e8dece;
+}
+
+body[data-theme="dark"] {
+    color-scheme: dark;
+    color: #f3eadc;
+}
+
+body[data-theme="dark"].bg-concert-hall {
+    background-color: #211a15;
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(154, 101, 61, 0.18), transparent 58%),
+        radial-gradient(ellipse at 85% 45%, rgba(126, 100, 65, 0.08), transparent 45%),
+        linear-gradient(145deg, #211a15 0%, #2a211a 55%, #1d1713 100%);
+}
+
+body[data-theme="dark"] [class*="bg-slate-"] {
+    background-color: #342b23 !important;
+}
+
+body[data-theme="dark"] [class*="hover:bg-slate-"]:hover {
+    background-color: #45382c !important;
+}
+
+body[data-theme="dark"] [class*="text-slate-100"],
+body[data-theme="dark"] [class*="text-slate-200"],
+body[data-theme="dark"] [class*="text-slate-300"] {
+    color: #f3eadc !important;
+}
+
+body[data-theme="dark"] [class*="text-slate-400"] {
+    color: #c4b6a3 !important;
+}
+
+body[data-theme="dark"] [class*="text-slate-500"],
+body[data-theme="dark"] [class*="text-slate-600"] {
+    color: #a18f79 !important;
+}
+
+body[data-theme="dark"] [class*="border-slate-"] {
+    border-color: #57483a !important;
+}
+
+body[data-theme="dark"] [class*="text-gold-"] {
+    color: #e6c28e !important;
+}
+
+body[data-theme="dark"] [class*="bg-gold-"] {
+    background-color: #59442f !important;
+}
+
+body[data-theme="dark"] [class*="border-gold-"] {
+    border-color: #b18a58 !important;
+}
+
+body[data-theme="dark"] [class*="text-amber-"] {
+    color: #e6b68d !important;
+}
+
+body[data-theme="dark"] [class*="bg-amber-"] {
+    background-color: #60412f !important;
+}
+
+body[data-theme="dark"] [class*="border-amber-"] {
+    border-color: #a97753 !important;
+}
+
+body[data-theme="dark"] [class*="text-emerald-"] {
+    color: #c5d3b6 !important;
+}
+
+body[data-theme="dark"] [class*="bg-emerald-"] {
+    background-color: #3e5140 !important;
+}
+
+body[data-theme="dark"] [class*="border-emerald-"] {
+    border-color: #71856b !important;
+}
+
+body[data-theme="dark"] [class*="text-indigo-"] {
+    color: #c8c0dc !important;
+}
+
+body[data-theme="dark"] [class*="bg-indigo-"] {
+    background-color: #47415f !important;
+}
+
+body[data-theme="dark"] [class*="border-indigo-"] {
+    border-color: #847aa2 !important;
+}
+
+body[data-theme="dark"] [class*="text-rose-"] {
+    color: #efc0b2 !important;
+}
+
+body[data-theme="dark"] [class*="bg-rose-"] {
+    background-color: #633d37 !important;
+}
+
+body[data-theme="dark"] [class*="border-rose-"] {
+    border-color: #a96d60 !important;
+}
+
+body[data-theme="dark"] .bg-concert-hall {
+    color: #f3eadc;
+}
+
+body[data-theme="dark"] header h1 {
+    background-image: linear-gradient(to right, #e8d2ad, #d8b579, #e7c5a0) !important;
+}
+
+body[data-theme="dark"] .library-card {
+    background-color: #342b23 !important;
+}
+
+body[data-theme="dark"] .card-stage {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+}
+
+body[data-theme="dark"] .card-stage .scale-card {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.24), 0 4px 6px -4px rgba(0, 0, 0, 0.24) !important;
+}
+
+body[data-theme="dark"] .draw-button {
+    background-color: #76583d;
+    color: #fff0d6;
+}
+
+body[data-theme="dark"] .draw-button:hover {
+    background-color: #866545;
+}
+
+body[data-theme="dark"] .dark-action-button {
+    background-color: #75433d;
+    color: #f6e7dd;
+}
+
+body[data-theme="dark"] .dark-action-button:hover {
+    background-color: #885047;
+}
+
+body[data-theme="dark"] .theme-toggle {
+    border-color: #76624d;
+    background-color: #342b23;
+    color: #ead5b5;
+}
+
+body[data-theme="dark"] .theme-toggle:hover {
+    background-color: #45382c;
+}
+
+@media (max-width: 640px) {
+    .site-header {
+        padding-top: 4.5rem !important;
+    }
+}
+
+body[data-theme="dark"] .modal-backdrop {
+    background-color: rgba(16, 13, 11, 0.72);
+}
+
+body[data-theme="dark"] ::selection {
+    background-color: #b18a58;
+    color: #2f2923;
+}
+
+body[data-theme="dark"] #progress-bar {
+    background-image: linear-gradient(to right, #657c5c, #8da287, #b0c19e) !important;
+}
+
+body[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: rgba(52, 43, 35, 0.8);
+}
+
+body[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: rgba(177, 138, 88, 0.5);
+}
+
+body[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: rgba(177, 138, 88, 0.75);
 }
 
 /* Custom Scrollbar for Card & Modals */
