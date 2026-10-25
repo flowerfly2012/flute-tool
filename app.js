@@ -32,6 +32,7 @@ const resetAllHistoryBtn = document.getElementById('reset-all-history-btn');
 const completionModal = document.getElementById('completion-modal');
 const completionBox = document.getElementById('completion-box');
 const restartGameBtn = document.getElementById('restart-game-btn');
+const cardGroupId = document.getElementById('card-group-id');
 const cardKeySigBadge = document.getElementById('card-key-sig-badge');
 const themeToggle = document.getElementById('theme-toggle');
 const themeStorageKey = 'flute_scale_draw_theme';
@@ -291,7 +292,9 @@ function toggleAnswerShow() {
 // Render card details
 function renderCardContent(item) {
     const g = item.group;
-    document.getElementById('card-group-id').textContent = `Group ${String(g.group_id).padStart(2, '0')}`;
+    cardGroupId.textContent = `Group ${String(g.group_id).padStart(2, '0')}`;
+    cardGroupId.hidden = !isAnswerShown;
+    cardKeySigBadge.hidden = !isAnswerShown;
     
     cardKeySigBadge.textContent = g.key_signature;
 
